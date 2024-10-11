@@ -29,7 +29,7 @@ public class Order {
 	private Client client;
 	
 	@OneToMany(mappedBy = "order")
-	private List<OrderItem> items = new ArrayList<OrderItem>();
+	private List<OrderItem> items = new ArrayList<>();
 	
 	public Order(){
 		
@@ -77,6 +77,14 @@ public class Order {
 
 	public List<OrderItem> getItems() {
 		return items;
+	}
+	
+	public double getTotal() {
+		double sum = 0.0;
+		for(OrderItem item : items) {
+			sum += item.getSubTotal();
+		}
+		return sum;
 	}
 	
 }
